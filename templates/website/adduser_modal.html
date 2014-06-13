@@ -1,0 +1,30 @@
+<!-- Add user modal -->
+<div class="modal fade" id="addUser" tabindex="-1" role="dialog" aria-labelledby="adduser-modal-label" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="cred-modal-label">Add a user</h4>
+      </div>
+      <div class="modal-body">
+        <form role="form" id="creds-form" method="POST" action="/accounts/add_user">{% csrf_token %}
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" name="email" id="email" placeholder="A valid email"><br/>
+
+            <label for="first-name">First Name</label>
+            <input type="text" class="form-control" name="first_name" id="first-name" placeholder="First name"><br/>
+
+            <label for="last-name">Last Name</label>
+            <input type="text" class="form-control" name="last_name" id="last-name" placeholder="Last name"><br/>
+
+            <button id="confirm-add-creds" class="btn btn-primary" type="submit">Add user</button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-default" type="button" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

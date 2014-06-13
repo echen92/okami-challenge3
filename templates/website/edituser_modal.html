@@ -1,0 +1,32 @@
+<!-- Add user modal -->
+<div class="modal fade" id="{{ item.username }}" tabindex="-1" role="dialog" aria-labelledby="edituser-modal-label" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="edituser-modal-label">Edit user</h4>
+      </div>
+      <div class="modal-body">
+        <form role="form" id="editUser-form" method="POST" action="/accounts/edit_user">{% csrf_token %}
+          <div class="form-group">
+            <input type="hidden" class="form-control" name="username" id="username" value={{ item.username }}>
+
+            <label for="email">Email</label>
+            <input type="text" class="form-control" name="email" id="email" placeholder={{ item.email }}><br/>
+
+            <label for="edit-first-name">First Name</label>
+            <input type="text" class="form-control" name="edit_first_name" id="edit-first-name" placeholder={{ item.first_name }}><br/>
+
+            <label for="edit-first-name">Last Name</label>
+            <input type="text" class="form-control" name="edit_last_name" id="edit-last-name" placeholder={{ item.last_name }}><br/>
+
+            <button id="confirm-edit-user" class="btn btn-primary" type="submit">Save changes</button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-default" type="button" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

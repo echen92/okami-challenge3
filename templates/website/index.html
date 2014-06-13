@@ -1,0 +1,76 @@
+{% load bootstrap3 %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'website/adduser_modal.html' %}
+{% include 'website/edituser_modal.html' %}
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <title>Okami Challenge3</title>
+  {% bootstrap_css %}
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  {% bootstrap_javascript %}
+</head>
+
+<body>
+<div class="navbar navbar-inverse navbar-static-top" role="navigation" style="margin-bottom: auto; height: 30px">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand">Okami Challenge3</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right navbar-form">
+        <a data-toggle="drop-modal" onclick="$('#addUser').modal('show');"
+              id="adduser-button" class="btn btn-success">Add User</a>
+
+      </ul>
+    </div>
+  </div>
+</div>
+
+{% bootstrap_messages %}
+<table class="table table-condensed table-responsive" id="rounded-corner">
+  <thead>
+  <tr>
+    <th scope="col" class="rounded">First name</th>
+    <th scope="col" class="rounded">Last name</th>
+    <th scope="col" class="rounded">Email</th>
+    <th scope="col" class="rounded">Options</th>
+  </tr>
+  </thead>
+  <tfoot>
+  <tr>
+    <td colspan="6" class="rounded-foot-left"><em>Erik Chen</em></td>
+    <td class="rounded-foot-right">&nbsp;</td>
+  </tr>
+  </tfoot>
+  <tbody>
+  {% for item in userlist %}
+    <tr>
+      <td>{{ item.first_name }}</td>
+      <td>{{ item.last_name }}</td>
+      <td>{{ item.email }}</td>
+      <td>
+        <!-- TODO: FIX EDIT USER -->
+        {% include 'website/edituser_modal.html' %}
+        <a data-toggle="drop-modal" onclick="$('#' + '{{ item.username }}').modal('show');"
+              id="edituser-button" class="btn btn-success">Edit user</a>
+
+        <form style="display: inline-block" action="/accounts/delete_user" method="POST">{% csrf_token %}
+          <input type="hidden" name="username" value="{{ item.username }}">
+          <input type="submit" class="btn btn-danger" value="Delete">
+        </form>
+
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+</body>
+</html>
