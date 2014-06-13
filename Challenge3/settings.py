@@ -56,7 +56,6 @@ MIDDLEWARE_CLASSES = (
 )
 
 ROOT_URLCONF = 'Challenge3.urls'
-
 WSGI_APPLICATION = 'Challenge3.wsgi.application'
 
 
