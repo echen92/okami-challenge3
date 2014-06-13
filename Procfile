@@ -1,1 +1,1 @@
-web: gunicorn finalproject_242.wsgi
+web: gunicorn Challenge3.wsgi
